@@ -23,20 +23,15 @@ export async function lazy<T>(
 	promise: Promise<T>,
 	options: {
 		awaitInitial?: boolean;
-		timeout?: number;
 	} = {}
 ): Promise<{ promise: T | Promise<T> }> {
-	const { awaitInitial, timeout } = options;
+	const { awaitInitial } = options;
 
 	if (awaitInitial && initial) {
 		await promise;
-	} else if (timeout && timeout > 0) {
-		await Promise.any([sleep(timeout), promise]);
 	}
 
 	return {
 		promise: !browser ? await promise : promise
 	};
 }
-
-const sleep = (ms: number) => new Promise((res) => setTimeout(res, ms));

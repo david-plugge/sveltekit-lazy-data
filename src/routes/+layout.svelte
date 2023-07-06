@@ -6,7 +6,8 @@
 
 <nav>
 	<a href="/">Home</a>
-	<a href="/greeting">Greeting</a>
+	<a href="/shared-load">shared load</a>
+	<a href="/server-load">server load</a>
 </nav>
 
 <slot />
