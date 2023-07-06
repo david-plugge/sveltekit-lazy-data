@@ -12,12 +12,8 @@ export function initLazy() {
 }
 
 /**
- *
- * @param promise A promise that is awaited on the server or when the criterias match
- * @param options.awaitInitial Await the promise on the client before hydrating
- * @param options.timeout Return the promise data if the promise is resolved within the timeout, otherwise return the promise
- *
- * @returns
+ * @param promise A promise that is awaited on the server or when the criterias match.
+ * @param options.awaitInitial Await the promise on the client before hydrating. Defaults to true.
  */
 export async function lazy<T>(
 	promise: Promise<T>,
@@ -27,7 +23,7 @@ export async function lazy<T>(
 ): Promise<{ promise: T | Promise<T> }> {
 	const { awaitInitial } = options;
 
-	if (awaitInitial && initial) {
+	if (awaitInitial !== false && initial) {
 		await promise;
 	}
 
